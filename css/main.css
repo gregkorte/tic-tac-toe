@@ -1,0 +1,22 @@
+.board {
+	height: 200px;
+	width: 200px;
+}
+.cell {
+	display: table-cell;
+	height: 60px;
+	width: 60px;
+	border: 1px solid black;
+	text-align: center;
+}
+.row {
+	display: table-row;
+	height: 62px;
+	width: 200px;
+}
+.X {
+	background: url(../img/X.png) center center no-repeat;
+}
+.O {
+	background: url(../img/O.png) center center no-repeat;
+}
