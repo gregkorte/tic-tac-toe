@@ -25,12 +25,12 @@ body {
 	width: 200px;
 }
 .X {
-	background: url(../img/X_lg.png) center center no-repeat;
-	background-size: 50%;
+	background: url(../img/X.png) center center no-repeat;
+	background-size: 75%;
 }
 .O {
 	background: url(../img/O.jpg) center center no-repeat;
-	background-size: 50%;
+	background-size: 75%;
 }
 
 .new {
