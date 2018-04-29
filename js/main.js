@@ -19,9 +19,17 @@ let buildBoard = () => {
   });
 }
 
-let setInitialState = () => {
-  playerTurn = 1;
-  turnCounter = 1;
+let newGame = () => {
+  board.html('');
+  removeEvents()
+  .then(() => {
+    buildBoard()
+    .then(() => {
+      playerTurn = 1;
+      turnCounter = 1;
+      activateEvents();
+    });
+  });
 }
 
 let clearLastClick = (turn) => {
@@ -52,9 +60,9 @@ let checkWinState = () => {
 
   winCombos.forEach((combo) => {
     let str = combo.join('');
-    console.log(str);
     if (str.match(re)){
-      alert(`Player ${playerTurn} wins!!!`)
+      let winner = turnCounter % 2 === 0 ? 1 : 2;
+      alert(`Player ${winner} wins!!!`)
       playerTurn = 0;
     }
   })
@@ -68,6 +76,13 @@ let mapBoard = () => {
     return move === null ? {[i]: null} : {[i]: move[0]};
   }).get()
   return matrix;
+}
+
+let removeEvents = () => {
+  return new Promise((resolve, reject) => {
+    $('.move').off('click');
+    resolve();
+  })
 }
 
 let activateEvents = () => {
@@ -85,11 +100,13 @@ let activateEvents = () => {
   });
 
   $('.move').click(() => {
+    console.log("I'm clicking...")
+    console.log(playerTurn, turnCounter, ' on click')
     turnCounter++;
-    if(turnCounter % 2 === 1){
-      playerTurn = 1;
-    } else {
+    if(turnCounter % 2 === 0){
       playerTurn = 2;
+    } else {
+      playerTurn = 1;
     }
 
     $(() => {
@@ -99,10 +116,8 @@ let activateEvents = () => {
     });
 
   })
+
 }
 
-buildBoard()
-.then(() => {
-  setInitialState();
-  activateEvents();
-});
+$('.new').click(() => newGame())
+newGame();

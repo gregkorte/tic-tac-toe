@@ -1,12 +1,21 @@
+body {
+	margin: 3%;
+}
+
+.grid{
+	display: grid;
+	grid-template-columns: 20% 80%
+}
+
 .board {
 	padding: 2%
-	height: 300px;
-	width: 300px;
+	height: 600px;
+	width: 600px;
 }
 .cell {
 	display: table-cell;
-	height: 100px;
-	width: 100px;
+	height: 200px;
+	width: 200px;
 	border: 1px solid black;
 	text-align: center;
 }
@@ -16,8 +25,20 @@
 	width: 200px;
 }
 .X {
-	background: url(../img/X.png) center center no-repeat;
+	background: url(../img/X_lg.png) center center no-repeat;
+	background-size: 50%;
 }
 .O {
-	background: url(../img/O.png) center center no-repeat;
+	background: url(../img/O.jpg) center center no-repeat;
+	background-size: 50%;
+}
+
+.new {
+	display: block;
+	margin: 2%;
+}
+
+.move {
+	display: block;
+	margin: 2%;
 }
