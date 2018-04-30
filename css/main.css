@@ -4,7 +4,7 @@ body {
 
 .grid{
 	display: grid;
-	grid-template-columns: 20% 80%
+	grid-template-columns: 30% 70%
 }
 
 .board {
@@ -12,6 +12,7 @@ body {
 	height: 600px;
 	width: 600px;
 }
+
 .cell {
 	display: table-cell;
 	height: 200px;
@@ -19,15 +20,18 @@ body {
 	border: 1px solid black;
 	text-align: center;
 }
+
 .row {
 	display: table-row;
 	height: 62px;
 	width: 200px;
 }
+
 .X {
 	background: url(../img/X.png) center center no-repeat;
 	background-size: 75%;
 }
+
 .O {
 	background: url(../img/O.jpg) center center no-repeat;
 	background-size: 75%;
@@ -41,4 +45,35 @@ body {
 .move {
 	display: block;
 	margin: 2%;
+}
+
+.stats {
+	display: block;
+	margin: 2%;
+}
+
+.stats-board {
+	display: grid;
+	grid-template-columns: 100%;
+}
+
+.player {
+	margin: 15px 0;
+}
+
+span {
+	text-align: right;
+	background-color: lightgrey;
+}
+
+h3 {
+	margin: 2px -5px;
+}
+
+td {
+	width: 50%;
+}
+
+.hidden {
+	visibility: hidden;
 }
