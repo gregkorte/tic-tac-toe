@@ -4,25 +4,26 @@ body {
 
 .grid{
   display: grid;
-  grid-template-columns: 40% 60%
+  grid-template-columns: 40% 60%;
 }
 
 .gameboard {
   display: grid;
-  grid-template-columns: 100%
+  grid-template-columns: 100%;
 }
 
 .board {
-  padding: 3em;
-  height: 6em;
+  padding: 2em;
+  height: 5.5em;
   transform: perspective(60em) rotateX(70deg);
   text-align: center;
 }
 
 .cell {
   display: table-cell;
-  height: 7em;
-  width: 7em;
+  background-color: #f7f7f7;
+  height: 5em;
+  width: 5em;
   border: 1px solid black;
   text-align: center;
 }
@@ -34,12 +35,12 @@ body {
 }
 
 .X {
-  background: url(../img/X.png) center center no-repeat;
+  background: url(../img/X_glass.jpg) center center no-repeat;
   background-size: 75%;
 }
 
 .O {
-  background: url(../img/O.jpg) center center no-repeat;
+  background: url(../img/O_glass.jpg) center center no-repeat;
   background-size: 75%;
 }
 

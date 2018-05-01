@@ -153,9 +153,9 @@ let showStats = () => {
 
 let buildBoard = () => {
   return new Promise((resolve, reject) => {
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
       let row = $('<div></div>').addClass('row');
-      for (let j = 0; j < 3; j++) {
+      for (let j = 0; j < 4; j++) {
         let cell = $('<span></span>').addClass('cell unoccupied');
         row.append(cell);
       }
@@ -179,7 +179,7 @@ let newGame = () => {
 }
 
 let clearLastClick = (turn) => {
-  for(let i = 0; i < 27; i++){
+  for(let i = 0; i < 64; i++){
     if ($(cells[i]).hasClass('current')){
       $(cells[i]).removeClass(`${turn} current`);
       $(cells[i]).addClass('unoccupied');
@@ -188,84 +188,116 @@ let clearLastClick = (turn) => {
 }
 
 let checkWinState = () => {
-  let re = /(X{3})|(O{3})/g;
+  let re = /(X{4})|(O{4})/g;
   let matrix = mapBoard().map((o, i) => {
     return o[i] === null ? "f" : o[i];
   });
 
   let winCombos = [
-    // 3X
-    matrix.slice(0, 3),
-    matrix.slice(3, 6),
-    matrix.slice(6, 9),
-
-    matrix.slice(9, 12),
-    matrix.slice(12, 15),
-    matrix.slice(15, 18),
-
-    matrix.slice(18, 21),
-    matrix.slice(21, 24),
-    matrix.slice(24, 27),
-    // 3X
-    [matrix[0], matrix[3], matrix[6]],
-    [matrix[1], matrix[4], matrix[7]],
-    [matrix[2], matrix[5], matrix[8]],
     // 4X
-    [matrix[0], matrix[4], matrix[8]],
-    // 2X
-    [matrix[2], matrix[4], matrix[6]],
-    // 3X
-    [matrix[9], matrix[12], matrix[15]],
-    [matrix[10], matrix[13], matrix[16]],
-    [matrix[11], matrix[14], matrix[17]],
+    matrix.slice(0, 4),
+    matrix.slice(4, 8),
+    matrix.slice(8, 12),
+    matrix.slice(12, 16),
+
+    matrix.slice(16, 20),
+    matrix.slice(20, 24),
+    matrix.slice(24, 28),
+    matrix.slice(28, 32),
+
+    matrix.slice(32, 36),
+    matrix.slice(36, 40),
+    matrix.slice(40, 44),
+    matrix.slice(44, 48),
+
+    matrix.slice(48, 52),
+    matrix.slice(52, 56),
+    matrix.slice(56, 60),
+    matrix.slice(60, 64),
     // 4X
-    [matrix[9], matrix[13], matrix[17]],
-    // 2X
-    [matrix[12], matrix[14], matrix[16]],
-    // 3X
-    [matrix[18], matrix[21], matrix[24]],
-    [matrix[19], matrix[22], matrix[25]],
-    [matrix[20], matrix[23], matrix[26]],
-    // 6X
-    [matrix[18], matrix[22], matrix[26]],
-    // 2X
-    [matrix[20], matrix[22], matrix[24]],
-    // 9X
-    [matrix[0], matrix[9], matrix[18]],
-    [matrix[1], matrix[10], matrix[19]],
-    [matrix[2], matrix[11], matrix[20]],
-
-    [matrix[3], matrix[12], matrix[21]],
-    [matrix[4], matrix[13], matrix[22]],
-    [matrix[5], matrix[14], matrix[23]],
-
-    [matrix[6], matrix[15], matrix[24]],
-    [matrix[7], matrix[16], matrix[25]],
-    [matrix[8], matrix[17], matrix[26]],
-    // 10X
-    [matrix[0], matrix[10], matrix[20]],
-    [matrix[3], matrix[13], matrix[23]],
-    [matrix[6], matrix[16], matrix[26]],
-    // 8X
-    [matrix[2], matrix[10], matrix[18]],
-    [matrix[5], matrix[13], matrix[21]],
-    [matrix[8], matrix[16], matrix[24]],
-    // 12X
-    [matrix[0], matrix[12], matrix[24]],
-    [matrix[1], matrix[13], matrix[25]],
-    [matrix[2], matrix[14], matrix[26]],
-    // 6X
-    [matrix[6], matrix[12], matrix[18]],
-    [matrix[7], matrix[13], matrix[19]],
-    [matrix[8], matrix[14], matrix[20]],
-    // 13X
-    [matrix[0], matrix[13], matrix[26]],
-    // 11X
-    [matrix[2], matrix[13], matrix[24]],
-    // 7X
-    [matrix[6], matrix[13], matrix[20]],
+    [matrix[0], matrix[4], matrix[8], matrix[12]],
+    [matrix[1], matrix[5], matrix[9], matrix[13]],
+    [matrix[2], matrix[6], matrix[10], matrix[14]],
+    [matrix[2], matrix[7], matrix[11], matrix[15]],
     // 5X
-    [matrix[8], matrix[13], matrix[18]]
+    [matrix[0], matrix[5], matrix[10], matrix[15]],
+    // 3X
+    [matrix[3], matrix[6], matrix[9], matrix[12]],
+    // 4X
+    [matrix[16], matrix[20], matrix[24], matrix[28]],
+    [matrix[17], matrix[21], matrix[25], matrix[29]],
+    [matrix[18], matrix[22], matrix[26], matrix[30]],
+    [matrix[19], matrix[23], matrix[27], matrix[31]],
+    // 5X
+    [matrix[16], matrix[21], matrix[26], matrix[31]],
+    // 3X
+    [matrix[19], matrix[22], matrix[25], matrix[28]],
+    // 4X
+    [matrix[32], matrix[36], matrix[40], matrix[44]],
+    [matrix[33], matrix[37], matrix[41], matrix[42]],
+    [matrix[34], matrix[38], matrix[42], matrix[46]],
+    [matrix[35], matrix[39], matrix[43], matrix[47]],
+    // 5X
+    [matrix[32], matrix[37], matrix[42], matrix[47]],
+    // 3X
+    [matrix[35], matrix[38], matrix[41], matrix[44]],
+    // 4X
+    [matrix[48], matrix[52], matrix[56], matrix[60]],
+    [matrix[49], matrix[53], matrix[57], matrix[61]],
+    [matrix[50], matrix[54], matrix[58], matrix[62]],
+    [matrix[51], matrix[55], matrix[59], matrix[63]],
+    // 5X
+    [matrix[48], matrix[53], matrix[58], matrix[63]],
+    // 3X
+    [matrix[51], matrix[54], matrix[57], matrix[60]],
+    // 16X
+    [matrix[0], matrix[16], matrix[32], matrix[48]],
+    [matrix[1], matrix[17], matrix[33], matrix[49]],
+    [matrix[2], matrix[18], matrix[34], matrix[50]],
+    [matrix[3], matrix[19], matrix[35], matrix[51]],
+
+    [matrix[4], matrix[20], matrix[36], matrix[52]],
+    [matrix[5], matrix[21], matrix[37], matrix[53]],
+    [matrix[6], matrix[22], matrix[38], matrix[54]],
+    [matrix[7], matrix[23], matrix[39], matrix[55]],
+
+    [matrix[8], matrix[24], matrix[40], matrix[56]],
+    [matrix[9], matrix[25], matrix[41], matrix[57]],
+    [matrix[10], matrix[26], matrix[42], matrix[58]],
+    [matrix[11], matrix[27], matrix[43], matrix[59]],
+
+    [matrix[12], matrix[28], matrix[44], matrix[60]],
+    [matrix[13], matrix[29], matrix[45], matrix[61]],
+    [matrix[14], matrix[30], matrix[46], matrix[62]],
+    [matrix[15], matrix[31], matrix[47], matrix[63]],
+    // 17X
+    [matrix[0], matrix[17], matrix[34], matrix[51]],
+    [matrix[4], matrix[21], matrix[38], matrix[55]],
+    [matrix[8], matrix[25], matrix[42], matrix[59]],
+    [matrix[12], matrix[29], matrix[46], matrix[63]],
+    // 15X
+    [matrix[3], matrix[18], matrix[33], matrix[48]],
+    [matrix[7], matrix[22], matrix[37], matrix[52]],
+    [matrix[11], matrix[26], matrix[41], matrix[56]],
+    [matrix[15], matrix[30], matrix[45], matrix[60]],
+    // 20X
+    [matrix[0], matrix[20], matrix[40], matrix[60]],
+    [matrix[1], matrix[21], matrix[41], matrix[61]],
+    [matrix[2], matrix[22], matrix[42], matrix[62]],
+    [matrix[3], matrix[23], matrix[43], matrix[63]],
+    // 12X
+    [matrix[12], matrix[24], matrix[36], matrix[48]],
+    [matrix[13], matrix[25], matrix[37], matrix[49]],
+    [matrix[14], matrix[26], matrix[38], matrix[50]],
+    [matrix[15], matrix[27], matrix[39], matrix[51]],
+    // 21X
+    [matrix[0], matrix[21], matrix[42], matrix[63]],
+    // 18X
+    [matrix[3], matrix[22], matrix[41], matrix[60]],
+    // 13X
+    [matrix[12], matrix[25], matrix[38], matrix[51]],
+    // 11X
+    [matrix[15], matrix[26], matrix[37], matrix[48]]
   ]
 
 
